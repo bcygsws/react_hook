@@ -39,32 +39,41 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## react17（react6.3 开始变更，react17 版本后正式移除丢弃的那几个钩子）生命周期钩子的变化
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 主要变化
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 一、创建阶段
 
-### Code Splitting
+1.1 react@16.3之前的 componentWillMount 被移除，取代它的是静态有返回值的方法 static getDerivedStateFormProps
+1.2 componentDidMount 不变
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### 二、更新阶段
 
-### Analyzing the Bundle Size
+2.1 componentWillReceiveProps 被移除，他的功能被合并到 getDerivedStateFromProps
+2.2 shouldComponentUpdate(props,state) 如果是当前组件的 state 变化引起更新，这个钩子的 state 将返回更新后的数据对象；
+2.3 如果是父组件给子组件传递的 props 变化，执行了 shouldComponentUpdate,这个 props 参数中拿到的是新属性
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### 三、更新阶段生命周期钩子执行的变化
 
-### Making a Progressive Web App
+##### 16.3 版本以前
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3.1 父组件给子组件传递的属性值发生变化，引起的组件更新；钩子执行顺序：componentWillReceiveProps
+---shouldComponentUpdate---componentWillUpdate---render---ComponentDidUpdate
+3.2 当前组件自身的 state 变化，引起的组件更新；shouldComponentUpdate---componentWillUpdate
+---render---ComponentDidUpdate
 
-### Advanced Configuration
+##### 16.3 以后的版本
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3.1 父组件给子组件传递的属性值变化，引起的组件更新；钩子执行顺序：getDerivedStateFromProps---shouldComponentUpdate
+---render---getSnapshotBeforeUpdate---componentDidUpdate;注意 render 函数的执行提到了替代 componentWillUpdate 的 getSnapshotBeforeUpdate 的前面
 
-### Deployment
+3.2 注意：
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   getSnapshotBeforeUpdate(){
+-   // 任何返回值都可以作为 ComponentDidUpdate(prevProps,prevState,third)的第三个参数
+-   return this.myRef.current.scrollHeight;
+-   }
+-   componentDidUpdate(prevProps,prevState,third) {
+    // 第三参数 third，是生命周期钩子 getSnapshotBeforeUpdate()的返回值
+-   }
