@@ -13,6 +13,8 @@
  *
  */
 import React, { Component } from 'react';
+// 导入.less文件
+import Hook from '../../css/hook.less';
 
 class Async extends Component {
 	constructor(props) {
@@ -23,7 +25,7 @@ class Async extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div className={Hook.container}>
 				<h3>这是setState异步性，验证案例</h3>
 				{/* 点击按钮，观察终端打印的this.state.count */}
 				<button onClick={this.increase}>

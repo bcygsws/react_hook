@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// 自定义全局样式
-import './css/base.less';
-
 ReactDOM.render(
 	<React.StrictMode>
 		<App />

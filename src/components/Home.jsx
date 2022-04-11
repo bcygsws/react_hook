@@ -3,6 +3,8 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Fat from './hook/Fat.jsx';
 // 异步任务-setState验证
 import Async from './async/Async.jsx';
+// 自定义全局样式
+import '../css/base.scss';
 class Home extends Component {
 	render() {
 		return (
