@@ -349,6 +349,7 @@ module.exports = function (webpackEnv) {
 			strictExportPresence: true,
 			rules: [
 				// Handle node_modules packages that contain sourcemaps
+				// exclude ?:是匹配但不存储，供以后使用，(?:\/|\\{1,2})等价于(/|\|\\)
 				shouldUseSourceMap && {
 					enforce: 'pre',
 					exclude: /@babel(?:\/|\\{1,2})runtime/,
@@ -505,6 +506,7 @@ module.exports = function (webpackEnv) {
 						// using the extension .module.css
 						{
 							test: cssModuleRegex,
+							// getStyleLoaders第一参数传递的是css-loader加载器的配置项options
 							use: getStyleLoaders({
 								importLoaders: 1,
 								sourceMap: isEnvProduction
@@ -546,6 +548,8 @@ module.exports = function (webpackEnv) {
 							test: sassModuleRegex,
 							use: getStyleLoaders(
 								{
+									// importLoaders：3表示css-loader后面还有三个加载器会处理当前样式文件
+									// 如果此处设置importLoaders:0，那么sass-loader是不工作的
 									importLoaders: 3,
 									sourceMap: isEnvProduction
 										? shouldUseSourceMap

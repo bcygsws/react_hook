@@ -137,6 +137,9 @@ export default Son;
  *
  *componentDidUpdate(prevProps,prevState,third) {
 		// 第三参数third，是生命周期钩子getSnapshotBeforeUpdate()的返回值
+		const curTop=this.myRef.current.scrollHeight;
+		// 页面挂载完成，呈现在屏幕上的，向上卷曲出去的高度值，重新赋值
+		this.myRef.current.scrollTop=curTop+(this.myRef.current.scrollHeight-third);
 
  }
  *
