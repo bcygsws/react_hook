@@ -87,7 +87,7 @@ class Son extends Component {
 		console.log(
 			prevProps.initVal + '：componentDidUpdate钩子：' + prevState.init
 		);
-		console.log(this.myRef.innerText);// 1
+		console.log(this.myRef.innerText); // 1
 	}
 }
 
