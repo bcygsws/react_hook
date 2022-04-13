@@ -37,9 +37,10 @@ export default App;
  * 创建的项目时，react18版本，新版本的特性，还待研究；不使用最新版本，使用更为成熟、稳定的版本react17
  *
  * 步骤如下：
- * 1.安装开发依赖，webpack4.43.0 html-webpack-plugin 4.5.0
- * 2.安装 react17 和react-dom 17,以及react-router-dom v5版本
+ * 1.$ npm run eject,将webpack配置暴露出来，查看package.json文件
+ * 2.安装 react17 和react-dom 17,以及react-router-dom v5版本的运行依赖（安装命令，末尾--save）
  * 3.降低react-scripts的版本，降为 v5版本
  *
+ * 
  *
  */
