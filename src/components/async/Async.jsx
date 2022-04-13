@@ -78,3 +78,10 @@ export default Async;
  * 6.接着往下执行，setState4,加1操作，count的值变成3，console.log输出4
  *
  */
+/**
+ * 深入理解异步-promise异步解决方案，同样使用事件循环来分析
+ * 地狱级难度面试题【仔细体会】本地文件：E:\web-prj\7.javascriptTest\25-Promise的理解和使用.html
+ *
+ *
+ *
+ */
