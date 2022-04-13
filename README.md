@@ -76,4 +76,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 -   }
 -   componentDidUpdate(prevProps,prevState,third) {
     // 第三参数 third，是生命周期钩子 getSnapshotBeforeUpdate()的返回值
+-   const curScrollTop=this.myRef.current.scrollTop;
+-   this.myRef.current.scrollTop=curScrollTop+(this.myRef.scrollHeight-third);
 -   }
+-   使用场景：getSnapshotBeforeUpdate 钩子可以用于返回增加的一行之前的高度，并把这个返回值作为参数，提供给完成最终渲染的钩子 componentDidUpdate

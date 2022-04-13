@@ -87,6 +87,7 @@ class Son extends Component {
 		console.log(
 			prevProps.initVal + '：componentDidUpdate钩子：' + prevState.init
 		);
+		console.log(this.myRef.innerText); // 1
 	}
 }
 
@@ -142,7 +143,13 @@ export default Son;
 		this.myRef.current.scrollTop=curTop+(this.myRef.current.scrollHeight-third);
 
  }
- *
+ * 
+ * b.当前组件的state值变化，执行的生命周期钩子
+ * getDerivedStateFromProps---shouldComponentUpdate---render-getSnapshotBeforeUpdate---componentDidUpdate
+ * 16.3版本以后，更新组件要执行的钩子完全一样，执行的顺序也一样；这一点和16.3之前的版本不同，16.3之前的版本，
+ * state变化引起的组件更新，componentWillReceiveProps这个钩子不会执行不会执行
+ * 
+ * 
  *
  */
 /* 
