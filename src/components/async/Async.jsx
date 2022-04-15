@@ -77,6 +77,20 @@ export default Async;
  * 为2
  * 6.接着往下执行，setState4,加1操作，count的值变成3，console.log输出4
  *
+ * @ React setState 同步异步的魅力
+ * 文档链接：https://zhuanlan.zhihu.com/p/399877218
+ *
+ * setState的同步/异步机制很复杂，在setTimeout SetInterval、addEventListener和DOM的原生事件（onClick等等）中，
+ * 可以对isBatchingUpdate进行一层封装，将其值设定为true,setState可以同步；而对于React的生命周期钩子，没有这层封装，
+ * setState表现为异步
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 /**
  * 深入理解异步-promise异步解决方案，同样使用事件循环来分析
