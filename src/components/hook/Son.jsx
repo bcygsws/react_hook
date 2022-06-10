@@ -29,6 +29,7 @@ class Son extends Component {
 		console.log(document.getElementById('para')); // 按钮点击前，<p id="para">0</p>
 	}
 	render() {
+		// 函数式，获取原生对象{ele=>this.myRef=ele}
 		console.log(this.myRef); // 按钮点击前，undefined 点击+1按钮后，<p id="para">1</p>,可以拿到更新的dom，但是还不能操作
 		console.log(this.myRef && this.myRef.innerText); // 按钮点击前，undefined，点击按钮后，0；最新页面还没有挂载，this.myRef.innerText=0
 		return (
@@ -172,7 +173,8 @@ Son.jsx:65 1:shouldComponentUpdate钩子：0
 Son.jsx:31 <p id=​"para">​0​</p>​
 Son.jsx:32 0
 Son.jsx:75 0：getSnapshotBeforeUpdate钩子：0
-Son.jsx:86 0：componentDidUpdate钩子
+Son.jsx:86 0：componentDidUpdate钩子:0
+					 0
 */
 /* 
 点击当前组件中+1按钮之前
@@ -193,6 +195,7 @@ Son.jsx:31 <p id=​"para">​1​</p>​
 Son.jsx:32 0
 Son.jsx:75 0：getSnapshotBeforeUpdate钩子：0
 Son.jsx:86 0：componentDidUpdate钩子：0
+ 					 1 
 
 
 
