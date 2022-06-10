@@ -39,13 +39,13 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## react17（react6.3 开始变更，react17 版本后正式移除丢弃的那几个钩子）生命周期钩子的变化
+## react17（react16.3 开始变更，react17 版本后正式移除丢弃的那几个钩子）生命周期钩子的变化
 
 ### 主要变化
 
 #### 一、创建阶段
 
-1.1 react@16.3之前的 componentWillMount 被移除，取代它的是静态有返回值的方法 static getDerivedStateFormProps
+1.1 react@16.3之前的 componentWillMount 被移除，取代它的是静态有返回值的方法 static getDerivedStateFromProps
 1.2 componentDidMount 不变
 
 #### 二、更新阶段
