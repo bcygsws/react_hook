@@ -17,12 +17,24 @@ class Son extends Component {
 	};
 	// 生命周期钩子，react16.3开始，中componentWillMount被抛弃了，改成了静态方法，getDerivedStateFromProps
 	// React17版本以后，这个钩子的功能包括react17之前的，componentWillMount+componentWillReceiveProps
-	static getDerivedStateFromProps(props, state) {
-		console.log(props); // 初始的props对象 按钮点击前，{initVal:0} 点击后{initVal:0}
-		console.log(state); // 跟踪最新的state对象 按钮点击前 {init:0} 点击后{init:1}
+	/**
+	 *
+	 * @ getDerivedStateFromProps
+	 * 1.它是一个静态函数，里面this指向的是类，而不是实例，所以不能通过this来访问class属性
+	 *
+	 * 2.要保持其纯函数的特点，根据其参数nextProps和nextState来进行判断，将新传入的props映射成state
+	 * 
+	 * 3.是为了让 props 能更新到组件内部 state中，它应返回一个对象来更新 state，
+	 * 如果返回 null 则不更新任何内容
+	 *
+	 *
+	 */
+	static getDerivedStateFromProps(nextProps, nextState) {
+		console.log(nextProps); // 初始的props对象 按钮点击前，{initVal:0} 点击后{initVal:0}
+		console.log(nextState); // 跟踪最新的state对象 按钮点击前 {init:0} 点击后{init:1}
 		console.log(document.getElementById('para')); // 按钮点击前，null，点击后<p id="para">1</p>
-		// return state;
-		return null;
+		return nextState;
+		// return null;
 	}
 	// 操作dom最早在componentDidMount阶段
 	componentDidMount() {
@@ -100,6 +112,7 @@ export default Son;
  * 参考文档：
  * https://www.jianshu.com/p/db4112950215
  *
+ * React17生命周期透彻讲解-知乎文章
  * https://zhuanlan.zhihu.com/p/370198189
  *
  * React setState 同步异步的魅力
