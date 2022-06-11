@@ -70,6 +70,8 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 3.2 注意：
 
+-   其中的 this.myRef.current.scrollTop=curScrollTop+(this.myRef.scrollHeight-third)，相当于在即将更新的 dom 树挂载到页面之前，重置 scrollTop，为 scrollTop 设定好高度，避免使用上一次旧的 scrollTop,而页面的 scrollTop 增加了，页面就往下掉
+
 -   getSnapshotBeforeUpdate(){
 -   // 任何返回值都可以作为 ComponentDidUpdate(prevProps,prevState,third)的第三个参数
 -   return this.myRef.current.scrollHeight;
@@ -79,4 +81,4 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 -   const curScrollTop=this.myRef.current.scrollTop;
 -   this.myRef.current.scrollTop=curScrollTop+(this.myRef.scrollHeight-third);
 -   }
--   使用场景：getSnapshotBeforeUpdate 钩子可以用于返回增加的一行之前的高度，并把这个返回值作为参数，提供给完成最终渲染的钩子 componentDidUpdate
+-   使用场景：getSnapshotBeforeUpdate 钩子可以用于返回增加的一行之前的高度，并把这个返回值作为参数，提供给完成最终渲染的钩子 componentDidUpdate;总结：getSnapshotBeforeUpdate 用于在组件可能的更之前，捕获一些信息
