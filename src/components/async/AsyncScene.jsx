@@ -5,8 +5,9 @@
  * 参考文档：
  * https://zhuanlan.zhihu.com/p/399877218
  * 
- * setState内部的实现机制很复杂，但道理很简单。当setTime、setInterval和addEventListener和dom的原生事件中，会对
- * setState进行一层封装，将isBatchingUpdate设置为true,此时走同步的分支
+ * setState内部的实现机制很复杂，但道理很简单。
+ * 1.对react生命周期钩子或者onClick、onFocus等合成事件中，封装了一层isBatchingUpdates可以置为true(上锁，需要等待)，表现为异步
+ * 2.当setTime、setInterval和addEventListener等原生事件中，isBatchingUpdates始终为false,表现为同步
  *
  * 
  * 

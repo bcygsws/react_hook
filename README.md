@@ -77,3 +77,11 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 -   componentDidUpdate(prevProps,prevState,third) {
     // 第三参数 third，是生命周期钩子 getSnapshotBeforeUpdate()的返回值
 -   }
+
+## setState 的同步/异步的使用场景
+
+### 异步使用
+
+-   在 React 生命周期钩子和 onClick、onFocus 等合成事件中，对 setState 进行封装了一层，isBatchingUpdates 可以置为 true(isBatchingUpdates 默认为 false),即“上锁”，则组件更新需要等待，表现为异步，这也是我们常用的场景
+
+-   在 setTimeout、setInterval、addEventListener 等原生 dom 事件中，isBatchingUpdates 标识始终为 false,在这些函数中使用 setState，则表现为同步
