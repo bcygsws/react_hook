@@ -45,7 +45,7 @@ class Async extends Component {
 			count: this.state.count + 1
 		});
 		console.log(this.state.count);
-		setTimeout(() => {
+		setTimeout(() => { 
 			this.setState({
 				// setState3
 				count: this.state.count + 1
@@ -65,7 +65,7 @@ export default Async;
  * @ 打印结果：0 0 2 3
  *
  * 原因分析：
- * 在通过辨别宏任务和微任务后，将其分别置于主线程任务斩和任务队列中，事件函数合成结束，开始执行代码，参考：https://zhuanlan.zhihu.com/p/269872938
+ * 在通过辨别宏任务和微任务后，将其分别置于主线程任务栈和任务队列中，事件函数合成结束，开始执行代码，参考：https://zhuanlan.zhihu.com/p/269872938
  * 1.代码执行到第一个setState时，它是异步任务，将setState1放入任务队列中，执行紧跟其后的console语句，它是同步宏任务，
  * 打印出0
  * 2.代码执行到第二个setState时，他是异步任务，将setState2放入任务队列中，检查发现队列中已经存在键为count的setState，

@@ -39,13 +39,13 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## react17（react6.3 开始变更，react17 版本后正式移除丢弃的那几个钩子）生命周期钩子的变化
+## react17（react16.3 开始变更，react17 版本后正式移除丢弃的那几个钩子）生命周期钩子的变化
 
 ### 主要变化
 
 #### 一、创建阶段
 
-1.1 react@16.3之前的 componentWillMount 被移除，取代它的是静态有返回值的方法 static getDerivedStateFormProps
+1.1 react@16.3之前的 componentWillMount 被移除，取代它的是静态有返回值的方法 static getDerivedStateFromProps
 1.2 componentDidMount 不变
 
 #### 二、更新阶段
@@ -82,3 +82,11 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 -   this.myRef.current.scrollTop=curScrollTop+(this.myRef.scrollHeight-third);
 -   }
 -   使用场景：getSnapshotBeforeUpdate 钩子可以用于返回增加的一行之前的高度，并把这个返回值作为参数，提供给完成最终渲染的钩子 componentDidUpdate;总结：getSnapshotBeforeUpdate 用于在组件可能的更之前，捕获一些信息
+
+## setState 的同步/异步的使用场景
+
+### 异步使用
+
+-   在 React 生命周期钩子和 onClick、onFocus 等合成事件中，对 setState 进行封装了一层，isBatchingUpdates 可以置为 true(isBatchingUpdates 默认为 false),即“上锁”，则组件更新需要等待，表现为异步，这也是我们常用的场景
+
+-   在 setTimeout、setInterval、addEventListener 等原生 dom 事件中，isBatchingUpdates 标识始终为 false,在这些函数中使用 setState，则表现为同步
